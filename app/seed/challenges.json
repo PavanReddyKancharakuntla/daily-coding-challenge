@@ -1,0 +1,128 @@
+[
+  {
+    "slug": "two-sum",
+    "title": "Two Sum",
+    "difficulty": "easy",
+    "language": "python",
+    "tags": ["array", "hashmap"],
+    "prompt": "Given an array of integers nums and an integer target, return the indices of the two numbers such that they add up to target. You may assume that each input has exactly one solution. Read input from stdin: first line is space-separated integers, second line is the target. Print the two indices separated by a space (in ascending order).",
+    "starter_code": "import sys\n\ndef two_sum(nums, target):\n    # TODO: implement\n    pass\n\nif __name__ == '__main__':\n    data = sys.stdin.read().split('\\n')\n    nums = list(map(int, data[0].split()))\n    target = int(data[1])\n    a, b = two_sum(nums, target)\n    print(a, b)\n",
+    "solution": "import sys\n\ndef two_sum(nums, target):\n    seen = {}\n    for i, n in enumerate(nums):\n        if target - n in seen:\n            return sorted([seen[target - n], i])\n        seen[n] = i\n\nif __name__ == '__main__':\n    data = sys.stdin.read().split('\\n')\n    nums = list(map(int, data[0].split()))\n    target = int(data[1])\n    a, b = two_sum(nums, target)\n    print(a, b)\n",
+    "test_cases": [
+      {"stdin": "2 7 11 15\n9\n", "expected_stdout": "0 1", "is_hidden": false},
+      {"stdin": "3 2 4\n6\n", "expected_stdout": "1 2", "is_hidden": false},
+      {"stdin": "3 3\n6\n", "expected_stdout": "0 1", "is_hidden": true},
+      {"stdin": "-1 -2 -3 -4 -5\n-8\n", "expected_stdout": "2 4", "is_hidden": true}
+    ]
+  },
+  {
+    "slug": "reverse-string",
+    "title": "Reverse a String",
+    "difficulty": "easy",
+    "language": "python",
+    "tags": ["string", "two-pointers"],
+    "prompt": "Read a single line from stdin and print its reverse.",
+    "starter_code": "import sys\n\ndef solve(s):\n    # TODO: implement\n    return s\n\nif __name__ == '__main__':\n    print(solve(sys.stdin.readline().rstrip('\\n')))\n",
+    "solution": "import sys\nprint(sys.stdin.readline().rstrip('\\n')[::-1])\n",
+    "test_cases": [
+      {"stdin": "hello\n", "expected_stdout": "olleh", "is_hidden": false},
+      {"stdin": "racecar\n", "expected_stdout": "racecar", "is_hidden": false},
+      {"stdin": "a\n", "expected_stdout": "a", "is_hidden": true},
+      {"stdin": "Daily Challenge\n", "expected_stdout": "egnellahC yliaD", "is_hidden": true}
+    ]
+  },
+  {
+    "slug": "fizzbuzz",
+    "title": "FizzBuzz",
+    "difficulty": "easy",
+    "language": "python",
+    "tags": ["math", "loops"],
+    "prompt": "Read an integer N from stdin. For each number from 1 to N print 'Fizz' if divisible by 3, 'Buzz' if divisible by 5, 'FizzBuzz' if divisible by both, otherwise the number itself. Print one value per line.",
+    "starter_code": "import sys\n\ndef solve(n):\n    # TODO: implement\n    pass\n\nif __name__ == '__main__':\n    n = int(sys.stdin.readline())\n    solve(n)\n",
+    "solution": "import sys\nn = int(sys.stdin.readline())\nfor i in range(1, n + 1):\n    if i % 15 == 0: print('FizzBuzz')\n    elif i % 3 == 0: print('Fizz')\n    elif i % 5 == 0: print('Buzz')\n    else: print(i)\n",
+    "test_cases": [
+      {"stdin": "5\n", "expected_stdout": "1\n2\nFizz\n4\nBuzz", "is_hidden": false},
+      {"stdin": "15\n", "expected_stdout": "1\n2\nFizz\n4\nBuzz\nFizz\n7\n8\nFizz\nBuzz\n11\nFizz\n13\n14\nFizzBuzz", "is_hidden": true}
+    ]
+  },
+  {
+    "slug": "valid-parentheses",
+    "title": "Valid Parentheses",
+    "difficulty": "medium",
+    "language": "python",
+    "tags": ["stack", "string"],
+    "prompt": "Given a string containing only the characters '()[]{}' read from stdin, determine if it is valid. A string is valid if every open bracket is closed by the same type of bracket in the correct order. Print 'true' or 'false'.",
+    "starter_code": "import sys\n\ndef is_valid(s):\n    # TODO: implement\n    return False\n\nif __name__ == '__main__':\n    s = sys.stdin.readline().rstrip('\\n')\n    print('true' if is_valid(s) else 'false')\n",
+    "solution": "import sys\n\ndef is_valid(s):\n    pairs = {')': '(', ']': '[', '}': '{'}\n    st = []\n    for ch in s:\n        if ch in '([{':\n            st.append(ch)\n        elif not st or st.pop() != pairs[ch]:\n            return False\n    return not st\n\ns = sys.stdin.readline().rstrip('\\n')\nprint('true' if is_valid(s) else 'false')\n",
+    "test_cases": [
+      {"stdin": "()\n", "expected_stdout": "true", "is_hidden": false},
+      {"stdin": "()[]{}\n", "expected_stdout": "true", "is_hidden": false},
+      {"stdin": "(]\n", "expected_stdout": "false", "is_hidden": false},
+      {"stdin": "([{}])\n", "expected_stdout": "true", "is_hidden": true},
+      {"stdin": "(((\n", "expected_stdout": "false", "is_hidden": true}
+    ]
+  },
+  {
+    "slug": "max-subarray",
+    "title": "Maximum Subarray Sum",
+    "difficulty": "medium",
+    "language": "python",
+    "tags": ["array", "dp", "kadane"],
+    "prompt": "Given an array of integers (space-separated on one line of stdin), find the contiguous subarray with the largest sum and print the sum.",
+    "starter_code": "import sys\n\ndef max_subarray(nums):\n    # TODO: implement\n    return 0\n\nif __name__ == '__main__':\n    nums = list(map(int, sys.stdin.read().split()))\n    print(max_subarray(nums))\n",
+    "solution": "import sys\nnums = list(map(int, sys.stdin.read().split()))\nbest = cur = nums[0]\nfor n in nums[1:]:\n    cur = max(n, cur + n)\n    best = max(best, cur)\nprint(best)\n",
+    "test_cases": [
+      {"stdin": "-2 1 -3 4 -1 2 1 -5 4\n", "expected_stdout": "6", "is_hidden": false},
+      {"stdin": "1\n", "expected_stdout": "1", "is_hidden": false},
+      {"stdin": "5 4 -1 7 8\n", "expected_stdout": "23", "is_hidden": true},
+      {"stdin": "-1 -2 -3\n", "expected_stdout": "-1", "is_hidden": true}
+    ]
+  },
+  {
+    "slug": "merge-intervals",
+    "title": "Merge Intervals",
+    "difficulty": "medium",
+    "language": "python",
+    "tags": ["array", "sorting"],
+    "prompt": "Read N on the first line, then N lines each with two integers a b representing intervals [a,b]. Merge all overlapping intervals and print each merged interval on its own line as 'a b', sorted by start.",
+    "starter_code": "import sys\n\ndef merge(intervals):\n    # TODO: implement\n    return intervals\n\nif __name__ == '__main__':\n    data = sys.stdin.read().split('\\n')\n    n = int(data[0])\n    iv = [list(map(int, line.split())) for line in data[1:1 + n]]\n    for a, b in merge(iv):\n        print(a, b)\n",
+    "solution": "import sys\ndata = sys.stdin.read().split('\\n')\nn = int(data[0])\niv = sorted([list(map(int, l.split())) for l in data[1:1 + n]])\nout = []\nfor a, b in iv:\n    if out and a <= out[-1][1]:\n        out[-1][1] = max(out[-1][1], b)\n    else:\n        out.append([a, b])\nfor a, b in out:\n    print(a, b)\n",
+    "test_cases": [
+      {"stdin": "4\n1 3\n2 6\n8 10\n15 18\n", "expected_stdout": "1 6\n8 10\n15 18", "is_hidden": false},
+      {"stdin": "2\n1 4\n4 5\n", "expected_stdout": "1 5", "is_hidden": false},
+      {"stdin": "3\n1 4\n0 2\n3 5\n", "expected_stdout": "0 5", "is_hidden": true}
+    ]
+  },
+  {
+    "slug": "longest-substring-no-repeat",
+    "title": "Longest Substring Without Repeating Characters",
+    "difficulty": "hard",
+    "language": "python",
+    "tags": ["string", "sliding-window", "hashmap"],
+    "prompt": "Read a string from stdin. Print the length of the longest substring without repeating characters.",
+    "starter_code": "import sys\n\ndef solve(s):\n    # TODO: implement\n    return 0\n\nif __name__ == '__main__':\n    print(solve(sys.stdin.readline().rstrip('\\n')))\n",
+    "solution": "import sys\ns = sys.stdin.readline().rstrip('\\n')\nlast = {}\nbest = left = 0\nfor i, c in enumerate(s):\n    if c in last and last[c] >= left:\n        left = last[c] + 1\n    last[c] = i\n    best = max(best, i - left + 1)\nprint(best)\n",
+    "test_cases": [
+      {"stdin": "abcabcbb\n", "expected_stdout": "3", "is_hidden": false},
+      {"stdin": "bbbbb\n", "expected_stdout": "1", "is_hidden": false},
+      {"stdin": "pwwkew\n", "expected_stdout": "3", "is_hidden": false},
+      {"stdin": "\n", "expected_stdout": "0", "is_hidden": true},
+      {"stdin": "dvdf\n", "expected_stdout": "3", "is_hidden": true}
+    ]
+  },
+  {
+    "slug": "word-ladder",
+    "title": "Word Ladder",
+    "difficulty": "hard",
+    "language": "python",
+    "tags": ["bfs", "graph", "string"],
+    "prompt": "Read beginWord on line 1, endWord on line 2, then a space-separated wordList on line 3. Print the length of the shortest transformation sequence from beginWord to endWord, where each step changes exactly one letter and every intermediate word is in wordList. Print 0 if no such sequence exists.",
+    "starter_code": "import sys\n\ndef ladder_length(begin, end, words):\n    # TODO: implement\n    return 0\n\nif __name__ == '__main__':\n    lines = sys.stdin.read().split('\\n')\n    begin, end = lines[0], lines[1]\n    words = lines[2].split()\n    print(ladder_length(begin, end, words))\n",
+    "solution": "import sys\nfrom collections import deque\n\ndef ladder_length(begin, end, words):\n    bank = set(words)\n    if end not in bank:\n        return 0\n    q = deque([(begin, 1)])\n    seen = {begin}\n    while q:\n        word, d = q.popleft()\n        if word == end:\n            return d\n        for i in range(len(word)):\n            for c in 'abcdefghijklmnopqrstuvwxyz':\n                nxt = word[:i] + c + word[i+1:]\n                if nxt in bank and nxt not in seen:\n                    seen.add(nxt)\n                    q.append((nxt, d + 1))\n    return 0\n\nlines = sys.stdin.read().split('\\n')\nbegin, end = lines[0], lines[1]\nwords = lines[2].split()\nprint(ladder_length(begin, end, words))\n",
+    "test_cases": [
+      {"stdin": "hit\ncog\nhot dot dog lot log cog\n", "expected_stdout": "5", "is_hidden": false},
+      {"stdin": "hit\ncog\nhot dot dog lot log\n", "expected_stdout": "0", "is_hidden": false},
+      {"stdin": "a\nc\na b c\n", "expected_stdout": "2", "is_hidden": true}
+    ]
+  }
+]
