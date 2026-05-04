@@ -5,7 +5,10 @@
  * - Throws an Error with the backend's `detail` message when a request fails.
  */
 
-const API_BASE = '/api';
+// In dev, leave VITE_API_URL unset → calls go to "/api/*", proxied by Vite to FastAPI.
+// In production (Vercel), set VITE_API_URL=https://your-backend.example.com so calls
+// go straight to the deployed backend.
+const API_BASE = (import.meta.env.VITE_API_URL || '/api').replace(/\/+$/, '');
 
 export class ApiError extends Error {
   status: number;

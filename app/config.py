@@ -16,7 +16,9 @@ class Settings(BaseSettings):
     algorithm: str = "HS256"
 
     # Database
-    database_url: str = "postgresql+psycopg2://postgres:postgres@localhost:5432/dcc"
+    # Local default = SQLite. Production = Postgres URL injected by host.
+    # Railway provides DATABASE_URL like "postgres://..." which we normalise.
+    database_url: str = "sqlite:///./dcc.db"
 
     # LLM
     anthropic_api_key: str | None = None
@@ -28,6 +30,9 @@ class Settings(BaseSettings):
     judge0_host: str = "judge0-ce.p.rapidapi.com"
 
     timezone: str = "UTC"
+
+    # Deployment
+    cors_origins: str = "*"  # comma-separated allowlist for production
 
 
 @lru_cache
