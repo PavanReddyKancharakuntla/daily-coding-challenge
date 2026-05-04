@@ -1,13 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <!-- Indigo-600 rounded square (same as the nav badge) -->
+  <!-- Indigo-600 rounded square (matches the nav badge) -->
   <rect width="64" height="64" rx="14" fill="#4f46e5"/>
 
-  <!-- Lucide "Bolt" icon, scaled from 24x24 to fit inside the badge.
-       fill="white" matches the nav's `text-white fill-current` styling. -->
-  <g transform="translate(12.8 12.8) scale(1.6)"
-     fill="white" stroke="white" stroke-width="2"
-     stroke-linecap="round" stroke-linejoin="round">
-    <path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
-    <circle cx="12" cy="12" r="4" fill="#4f46e5"/>
-  </g>
+  <!-- Solid white hexagonal "Bolt" silhouette, scaled from 24x24 -->
+  <path transform="translate(12.8 12.8) scale(1.6)"
+        d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"
+        fill="white" stroke="white" stroke-width="2"
+        stroke-linejoin="round"/>
 </svg>
